@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AirportWebApi.DAL.Models;
 
 namespace AirportWebApi.DAL.Repositories
 {
-    class FlightRepository
+    public class FlightRepository : BaseRepository<Flight>
     {
+        public FlightRepository()
+        {
+            SetAll(seeder.Flights);
+        }
     }
 }

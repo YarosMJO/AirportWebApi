@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AirportApi.Models
+namespace Shared.Dtos
 {
     public class CrewDto
     {

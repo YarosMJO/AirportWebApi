@@ -1,7 +1,8 @@
-﻿using AirportApi.Models;
+﻿using AirportWebApi.DAL.Models;
 using AutoMapper;
+using Shared.Dtos;
 
-namespace Shared
+namespace Shared.Configs
 {
     public class AutoMapperConfiguration
     {

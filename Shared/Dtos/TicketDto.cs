@@ -1,4 +1,4 @@
-﻿namespace AirportApi.Models
+﻿namespace Shared.Dtos
 {
     public class TicketDto
     {

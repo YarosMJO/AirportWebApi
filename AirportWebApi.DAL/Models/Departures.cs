@@ -1,14 +1,14 @@
-﻿using System;
+﻿using AirportWebApi.DAL.Repositories;
+using System;
 
-namespace AirportApi.Models
+namespace AirportWebApi.DAL.Models
 {
-    public class Departure
+    public class Departure : EntityBase
     {
-        public int Id { get; set; }
         public int FlightNumber { get; set; }
         public DateTime DepartureDate { get; set; }
-        public Crew Crew { get; set; }
-        public Plane Plane { get; set; }
+        public int Crew { get; set; }
+        public int Plane { get; set; }
 
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AirportApi.Models
+namespace Shared.Dtos
 {
     public class DeparturesDto
     {

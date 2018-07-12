@@ -1,7 +1,8 @@
-﻿using AirportApi.Models;
-using AirportWebApi.BL;
+﻿using AirportWebApi.BL;
+using AirportWebApi.DAL.Models;
 using AirportWebApi.DAL.Repositories;
 using AutoMapper;
+using Shared.Dtos;
 using System.Collections.Generic;
 using System.Linq;
 

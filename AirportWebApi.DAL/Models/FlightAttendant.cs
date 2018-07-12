@@ -1,10 +1,10 @@
-﻿using System;
+﻿using AirportWebApi.DAL.Repositories;
+using System;
 
-namespace AirportApi.Models
+namespace AirportWebApi.DAL.Models
 {
-    public class FlightAttendant
+    public class FlightAttendant : EntityBase
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public DateTime Birthday { get; set; }

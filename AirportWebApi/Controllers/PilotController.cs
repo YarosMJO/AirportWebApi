@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace AirportWebAPI.Controllers
 {
     [Produces("application/json")]
-    [Route("/api/v1/crews/Pilots")]
-    public class PilosController : Controller
+    [Route("/api/v1/crews/pilots")]
+    public class PilotController : Controller
     {
         private readonly IService<PilotDto> service;
 
-        public PilosController(IService<PilotDto> service)
+        public PilotController(IService<PilotDto> service)
         {
             this.service = service;
         }
@@ -37,7 +37,7 @@ namespace AirportWebAPI.Controllers
             var item = service.Add(value);
             if (item == null || !this.ModelState.IsValid)
             {
-                return this.BadRequest();
+                return this.BadRequest("");
             }
             else
             {

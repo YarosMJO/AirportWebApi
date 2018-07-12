@@ -1,8 +1,9 @@
-﻿namespace AirportApi.Models
+﻿using AirportWebApi.DAL.Repositories;
+
+namespace AirportWebApi.DAL.Models
 {
-    public class Ticket
+    public class Ticket : EntityBase
     {
-        public int Id { get; set; }
         public int Price { get; set; }
         public int FlightNumber { get; set; }
     }

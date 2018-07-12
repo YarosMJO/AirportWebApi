@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using AirportWebApi.DAL.Repositories;
+using System.Collections.Generic;
 
-namespace AirportApi.Models
+namespace AirportWebApi.DAL.Models
 {
-    public class Crew
+    public class Crew : EntityBase
     {
-        public Pilot Pilot { get; set; }
-        public List<FlightAttendant> FlightAttendants { get; set; }
+        public int Pilot { get; set; }
+        public List<int> FlightAttendants { get; set; }
 
     }
 }

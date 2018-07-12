@@ -1,14 +1,15 @@
-﻿using FluentValidation;
+﻿using AirportWebApi.DAL.Repositories;
+using FluentValidation;
 using FluentValidation.Attributes;
 using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace AirportApi.Models
+namespace AirportWebApi.DAL.Models
 {
     [Validator(typeof(PilotValidator))]
-    public class Pilot
+    public class Pilot : EntityBase
     {
-
-        public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
         public string Surname { get; set; }
         public DateTime Birthday { get; set; }

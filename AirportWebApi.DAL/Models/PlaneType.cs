@@ -1,10 +1,10 @@
-﻿using System;
+﻿using AirportWebApi.DAL.Repositories;
+using System;
 
-namespace AirportApi.Models
+namespace AirportWebApi.DAL.Models
 {
-    public class PlaneType
+    public class PlaneType : EntityBase
     {
-        public int Id { get; set; }
         public string Model { get; set; }
         public int SeatsCapacity { get; set; }
         public int Carrying { get; set; }
