@@ -1,74 +1,67 @@
-﻿using AirportWebApi.DAL.Models;
+﻿using AirportApi.Models;
 using AirportWebApi.DAL.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AirportWebAPI.DataAccessLayer.Repositories
 {
-    public class PilotRepository : IRepository<HouseModel>
+    public class PilotRepository : IRepository<Pilot>
     {
-        private List<HouseModel> pilots;
+        private List<Pilot> pilots;
         public PilotRepository()
         {
-            CreateSeeds();
-        }
-
-        public HouseModel AddEntry(HouseModel entity)
-        {
-            if (entity != null)
+            pilots = new List<Pilot>
             {
-                pilots.Add(entity);
-                return entity;
-            }
-            else return null;
+                new Pilot(){ Id=1,Name="Nikolas", Surname="Morreti",Birthday=new DateTime(2015, 7, 19)},
+                new Pilot(){ Id=2,Name="Alessio", Surname="Rossi",Birthday=new DateTime(2004, 6, 21)},
+                new Pilot(){ Id=3,Name="Gennaro", Surname="Calabresi",Birthday=new DateTime(2014, 3, 17)},
+                new Pilot(){ Id=4,Name="Beppe", Surname="Mancini",Birthday=new DateTime(2006, 1, 20)},
+                new Pilot(){ Id=5,Name="Adelaide", Surname="Giordano",Birthday=new DateTime(1998, 8, 14)}
+            };
         }
 
-        public IEnumerable<HouseModel> GetAll()
+        public Pilot GetById(int id)
+        {
+            return pilots.Where(x => x?.Id == id).FirstOrDefault();
+        }
+
+        public IEnumerable<Pilot> GetAll()
         {
             return pilots;
         }
 
-        public HouseModel GetById(int id)
+        public Pilot Add(Pilot pilot)
         {
-            return pilots.Where(x => x.Id == id).FirstOrDefault();
+            if (pilot != null)
+            {
+                pilots.Add(pilot);
+                return pilot;
+            }
+            else return null;
         }
 
-        public HouseModel RemoveEntity(int id)
+        public Pilot Update(Pilot item)
         {
-            var temp = pilots.Where(x => x.Id == id).FirstOrDefault();
-            if (temp != null)
+            var pilot = pilots.Where(x => x?.Id == item?.Id).FirstOrDefault();
+            if (pilot != null)
             {
-                pilots.Remove(temp);
-                return temp;
+                pilots.Remove(pilot);
+                pilots.Add(item);
+                return item;
             }
-            else
-            {
-                return null;
-            }
+            else return null;
         }
 
-        public HouseModel UpdateEntity(HouseModel entity)
+        public Pilot Remove(int id)
         {
-            var temp = pilots.Where(x => x.Id == entity.Id).FirstOrDefault();
-            if (temp != null)
+            var pilot = pilots.Where(x => x?.Id == id).FirstOrDefault();
+            if (pilot != null)
             {
-                pilots.Remove(temp);
-                pilots.Add(entity);
-                return entity;
+                pilots.Remove(pilot);
+                return pilot;
             }
-            else
-            {
-                return null;
-            }
-        }
-
-        private void CreateSeeds()
-        {
-            pilots = new List<HouseModel>
-            {
-                //new HouseModel { Id = 1, FirstName = "Donald", SecondName = "Trump", BirthDate = "11.01.1960", Experience = 10},
-                //new HouseModel { Id = 2, FirstName = "George", SecondName = "Bush" , BirthDate = "29.06.1975", Experience = 5}
-            };
+            else return null;
         }
     }
 }

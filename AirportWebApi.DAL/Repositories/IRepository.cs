@@ -4,14 +4,14 @@ namespace AirportWebApi.DAL.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        IEnumerable<TEntity> GetAll();
-
         TEntity GetById(int id);
 
-        TEntity AddEntry(TEntity entity);
+        IEnumerable<TEntity> GetAll();
 
-        TEntity UpdateEntity(TEntity entity);
+        TEntity Add(TEntity entity);
 
-        TEntity RemoveEntity(int id);
+        TEntity Update(TEntity entity);
+
+        TEntity Remove(int id);
     }
 }

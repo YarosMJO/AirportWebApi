@@ -1,63 +1,62 @@
-﻿using AirportWebApi.BL;
+﻿using AirportApi.Models;
+using AirportWebApi.BL;
 using Microsoft.AspNetCore.Mvc;
-using Shared.Dtos;
 
 namespace AirportWebAPI.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Pilots")]
+    [Route("/api/v1/crews/Pilots")]
     public class PilosController : Controller
     {
-        private readonly IService<HouseDto> service;
+        private readonly IService<PilotDto> service;
 
-        public PilosController(IService<HouseDto> service)
+        public PilosController(IService<PilotDto> service)
         {
             this.service = service;
         }
 
-        // GET: api/Pilots
+        // GET: /api/v1/crews/pilots/
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(service.GetAll());
         }
 
-        // GET: api/Pilots/5
+        // GET: /api/v1/pilots/5
         [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(int id)
         {
-            var temp = service.GetById(id);
-            if (temp == null) return NotFound("Pilot with this ID not found");
-            return Ok(temp);
+            var item = service.GetById(id);
+            return Ok(item);
         }
 
-        // POST: api/Pilots
+        // POST: /api/v1/crews/pilots/
         [HttpPost]
-        public IActionResult Post([FromBody]HouseDto value)
+        public IActionResult Post([FromBody]PilotDto value)
         {
-            var temp = service.AddEntry(value);
-            if (temp == null)
+            var item = service.Add(value);
+            if (item == null || !this.ModelState.IsValid)
             {
-                return BadRequest();
+                return this.BadRequest();
             }
             else
             {
-                return Ok(temp);
+                return Ok(item);
             }
         }
 
-        // PUT: api/Pilots/5
+        // PUT: /api/v1/pilots/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]HouseDto value)
+        public IActionResult Put(int id, [FromBody]PilotDto value)
         {
-            var temp = service.UpdateEntry(value);
-            if (temp == null)
+            var item = service.Update(value);
+            if (item == null)
             {
                 return BadRequest();
             }
             else
             {
-                return Ok(temp);
+                return Ok(item);
             }
         }
 
@@ -65,14 +64,14 @@ namespace AirportWebAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var temp = service.RemoveEntry(id);
-            if (temp == null)
+            var item = service.Remove(id);
+            if (item == null)
             {
                 return BadRequest();
             }
             else
             {
-                return Ok(string.Format("Pilot with ID {0} was successfuly deleted", temp.Id));
+                return Ok(id);
             }
         }
     }

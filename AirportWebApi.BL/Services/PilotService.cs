@@ -1,64 +1,57 @@
-﻿using AirportWebApi.BL;
-using AirportWebApi.DAL.Models;
+﻿using AirportApi.Models;
+using AirportWebApi.BL;
 using AirportWebApi.DAL.Repositories;
 using AutoMapper;
-using Shared.Dtos;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AirportWebAPI.BL
 {
-    public class PilotService : IService<HouseDto>
+    public class PilotService : IService<PilotDto>
     {
-        private readonly IRepository<HouseModel> repository;
+        private readonly IRepository<Pilot> repository;
         private readonly IMapper mapper;
 
-        public PilotService(IRepository<HouseModel> repository, IMapper mapper)
+        public PilotService(IRepository<Pilot> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;
         }
-        public HouseDto AddEntry(HouseDto pilot)
+        public PilotDto Add(PilotDto pilot)
         {
-            var temp = repository.AddEntry(mapper.Map<HouseDto, HouseModel>(pilot));
-            if (temp == null)
+            var item = repository.Add(mapper.Map<PilotDto, Pilot>(pilot));
+            if (item != null)
             {
-                return null;
+                return mapper.Map<Pilot, PilotDto>(item);
             }
-            else
-            {
-                return mapper.Map<HouseModel, HouseDto>(temp);
-            }
+            else return null;
         }
 
-        public HouseDto GetById(int id)
+        public PilotDto GetById(int id)
         {
-            var temp = repository.GetById(id);
-            return mapper.Map<HouseModel, HouseDto>(temp);
+            var item = repository.GetById(id);
+            return mapper.Map<Pilot, PilotDto>(item);
         }
 
-        public List<HouseDto> GetAll()
+        public List<PilotDto> GetAll()
         {
-            var temp = repository.GetAll();
-            return temp.Select(mapper.Map<HouseModel, HouseDto>).ToList();
+            var item = repository.GetAll();
+            return item.Select(mapper.Map<Pilot, PilotDto>).ToList();
         }
 
-        public HouseDto RemoveEntry(int id)
+        public PilotDto Remove(int id)
         {
-            return mapper.Map<HouseModel, HouseDto>(repository.RemoveEntity(id));
+            return mapper.Map<Pilot, PilotDto>(repository.Remove(id));
         }
 
-        public HouseDto UpdateEntry(HouseDto pilot)
+        public PilotDto Update(PilotDto pilot)
         {
-            var temp = repository.UpdateEntity(mapper.Map<HouseDto, HouseModel>(pilot));
-            if (temp == null)
+            var item = repository.Update(mapper.Map<PilotDto, Pilot>(pilot));
+            if (item != null)
             {
-                return null;
+                return mapper.Map<Pilot, PilotDto>(item);
             }
-            else
-            {
-                return mapper.Map<HouseModel, HouseDto>(temp);
-            }
+            else return null;
         }
     }
 }

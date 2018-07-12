@@ -6,8 +6,8 @@ namespace AirportWebApi.BL
     {
         List<TEntity> GetAll();
         TEntity GetById(int id);
-        TEntity AddEntry(TEntity entity);
-        TEntity RemoveEntry(int id);
-        TEntity UpdateEntry(TEntity entity);
+        TEntity Add(TEntity entity);
+        TEntity Remove(int id);
+        TEntity Update(TEntity entity);
     }
 }
