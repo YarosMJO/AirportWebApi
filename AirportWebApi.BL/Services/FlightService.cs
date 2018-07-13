@@ -54,5 +54,10 @@ namespace AirportWebApi.BL.Services
             }
             else return null;
         }
+
+        public void RemoveAll()
+        {
+            repository.RemoveAll();
+        }
     }
 }

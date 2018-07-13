@@ -71,5 +71,13 @@ namespace AirportWebApi.Controllers
             }
             return NotFound();
         }
+
+        // DELETE: /api/v1/planes/
+        [HttpDelete]
+        public IActionResult Delete()
+        {
+            service.RemoveAll();
+            return Ok("All clean");
+        }
     }
 }

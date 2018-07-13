@@ -17,6 +17,8 @@ namespace AirportWebApi.DAL.Repositories
         TEntity Remove(int id);
 
         TEntity GetItemByPredicate(Func<TEntity, bool> predicate);
+
+        void RemoveAll();
     }
     public abstract class EntityBase
     {

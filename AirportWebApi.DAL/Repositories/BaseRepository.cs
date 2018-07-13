@@ -52,6 +52,11 @@ namespace AirportWebApi.DAL.Repositories
             else return null;
         }
 
+        public void RemoveAll()
+        {
+            entities.Clear();
+        }
+
         public T Update(T entity)
         {
             var item = GetItemByPredicate(x => x?.Id == entity?.Id);

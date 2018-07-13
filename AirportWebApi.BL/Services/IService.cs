@@ -9,5 +9,6 @@ namespace AirportWebApi.BL
         TEntity Add(TEntity entity);
         TEntity Remove(int id);
         TEntity Update(TEntity entity);
+        void RemoveAll();
     }
 }

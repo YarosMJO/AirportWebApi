@@ -54,9 +54,9 @@ namespace AirportWebApi.BL.Services
             else return null;
         }
 
-        //public PilotDto GetAllOf(int id)
-        //{
-        //    var item = repository.
-        //}
+        public void RemoveAll()
+        {
+            repository.RemoveAll();
+        }
     }
 }
