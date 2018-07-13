@@ -1,12 +1,11 @@
-﻿using AirportWebApi.BL;
-using AirportWebApi.DAL.Models;
+﻿using AirportWebApi.DAL.Models;
 using AirportWebApi.DAL.Repositories;
 using AutoMapper;
 using Shared.Dtos;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AirportWebAPI.BL
+namespace AirportWebApi.BL.Services
 {
     public class PilotService : IService<PilotDto>
     {
@@ -54,5 +53,10 @@ namespace AirportWebAPI.BL
             }
             else return null;
         }
+
+        //public PilotDto GetAllOf(int id)
+        //{
+        //    var item = repository.
+        //}
     }
 }
