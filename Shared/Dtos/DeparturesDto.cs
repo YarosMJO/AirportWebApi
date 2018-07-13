@@ -7,8 +7,8 @@ namespace Shared.Dtos
         public int Id { get; set; }
         public int FlightNumber { get; set; }
         public DateTime DepartureDate { get; set; }
-        public CrewDto Crew { get; set; }
-        public PlaneDto Plane { get; set; }
+        public int Crew { get; set; }
+        public int Plane { get; set; }
 
     }
 }

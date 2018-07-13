@@ -4,7 +4,7 @@ namespace AirportWebApi.DAL.Repositories
 {
     public class CrewRepository : BaseRepository<Crew>
     {
-        private CrewRepository()
+        public CrewRepository()
         {
             SetAll(seeder.Crews);
         }

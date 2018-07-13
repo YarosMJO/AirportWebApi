@@ -1,7 +1,6 @@
 ﻿using AirportWebApi.DAL.Models;
-using AirportWebApi.DAL.Repositories;
 
-namespace AirportWebAPI.DataAccessLayer.Repositories
+namespace AirportWebApi.DAL.Repositories
 {
     public class PilotRepository : BaseRepository<Pilot>
     {

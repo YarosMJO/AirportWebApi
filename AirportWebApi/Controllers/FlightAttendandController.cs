@@ -5,7 +5,7 @@ using Shared.Dtos;
 namespace AirportWebApi.Controllers
 {
     [Produces("application/json")]
-    [Route("/api/v1/FlightAttendants/")]
+    [Route("/api/v1/flightAttendants/")]
     public class FlightAttendantController : Controller
     {
         private readonly IService<FlightAttendantDto> service;
@@ -15,60 +15,61 @@ namespace AirportWebApi.Controllers
             this.service = service;
         }
 
-        // GET: /api/v1/crews/id/FlightAttendants/
-        //[Route("/api/v1/crews/{id}/FlightAttendants/")]
-        //[HttpGet("{id}")]
-        //public IActionResult GetAllOf(int id)
-        //{
-        //    //service.
-        //    //return Ok(service.GetAllOf(id));
-        //}
-
-        // GET: /api/v1/FlightAttendants/
+        // GET: /api/v1/flightAttendants/
         [HttpGet]
-        public IActionResult GetTotal()
+        public IActionResult Get()
         {
-            return Ok(service.GetAll());
+            var items = service.GetAll();
+            if (items != null) return Ok(items);
+            return NoContent();
         }
 
-        // GET: /api/v1/FlightAttendants/5
-        [Route("/api/v1/FlightAttendants/{id}")]
+        // GET: /api/v1/flightAttendants/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var item = service.GetById(id);
-            if (item == null) return NotFound();
-            return Ok(item);
+            if (ModelState.IsValid)
+            {
+                var item = service.GetById(id);
+                if (item != null) return Ok(item);
+            }
+            return NotFound();
         }
 
-        // POST: /api/v1/FlightAttendants/
+        // POST: /api/v1/flightAttendants/
         [HttpPost]
         public IActionResult Post([FromBody]FlightAttendantDto value)
         {
-            var item = service.Add(value);
-            if (item == null || !this.ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return BadRequest("");
+                var item = service.Add(value);
+                if (item != null) return Ok(item);
             }
-            else return Ok(item);
+            return BadRequest();
         }
 
-        // PUT: /api/v1/FlightAttendants/5
+        // PUT: /api/v1/flightAttendants/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]FlightAttendantDto value)
         {
-            var item = service.Update(value);
-            if (item != null) return Ok(item);
-            else return BadRequest();
+            if (ModelState.IsValid)
+            {
+                var item = service.Update(value);
+                if (item != null) return Ok(item);
+            }
+            return BadRequest();
         }
 
-        // DELETE: /api/v1/FlightAttendants/5
+        // DELETE: /api/v1/flightAttendants/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var item = service.Remove(id);
-            if (item != null) return Ok(item);
-            else return NotFound();
+            if (ModelState.IsValid)
+            {
+                var item = service.Remove(id);
+                if (item != null) return NoContent();
+            }
+            return NotFound();
         }
     }
 }

@@ -4,8 +4,8 @@ namespace Shared.Dtos
 {
     public class CrewDto
     {
-        public PilotDto Pilot { get; set; }
-        public List<FlightAttendantDto> FlightAttendants { get; set; }
-
+        public int Id { get; set; }
+        public int Pilot { get; set; }
+        public List<int> FlightAttendants { get; set; }
     }
 }

@@ -16,8 +16,11 @@ namespace AirportWebApi.DAL.Repositories
         private List<T> entities;
         public T Add(T entity)
         {
+            int newId = !GetAll().Any() ? 1 : GetAll().Max(x => x.Id) + 1;
+
             if (entity != null)
             {
+                entity.Id = newId;
                 entities.Add(entity);
                 return entity;
             }
@@ -54,8 +57,7 @@ namespace AirportWebApi.DAL.Repositories
             var item = GetItemByPredicate(x => x?.Id == entity?.Id);
             if (item != null)
             {
-                entities.Remove(item);
-                entities.Add(entity);
+                entities[item.Id] = entity;
                 return entity;
             }
             else return null;

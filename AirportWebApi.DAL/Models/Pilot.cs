@@ -1,33 +1,24 @@
 ﻿using AirportWebApi.DAL.Repositories;
-using FluentValidation;
-using FluentValidation.Attributes;
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace AirportWebApi.DAL.Models
 {
-    [Validator(typeof(PilotValidator))]
+
     public class Pilot : EntityBase
     {
         [Required]
+        [StringLength(20, MinimumLength = 3, ErrorMessage = "Name must be at least 3 characters long")]
         public string Name { get; set; }
+        [Required]
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "Surname must be at least 3 characters long")]
         public string Surname { get; set; }
+        [Required]
+        [DataType(DataType.DateTime)]
         public DateTime Birthday { get; set; }
+        [Required]
         public int Experience { get; set; }
 
     }
 
-    public class PilotValidator : AbstractValidator<Pilot>
-    {
-        public PilotValidator()
-        {
-            //RuleFor(x => x.Name).Length(8, 999).WithMessage("The user name must be at least 8 characters long.");
-            RuleFor(x => x.Name).NotEmpty().WithMessage("The First Name cannot be blank.")
-                                        .Length(0, 10).WithMessage("The First Name cannot be more than 100 characters.");
-
-            RuleFor(x => x.Surname).NotEmpty().WithMessage("The Last Name cannot be blank.");
-
-            RuleFor(x => x.Birthday).LessThan(DateTime.Today).WithMessage("You cannot enter a birth date in the future.");
-        }
-    }
 }

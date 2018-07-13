@@ -6,7 +6,7 @@ namespace Shared.Dtos
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public PlaneTypeDto Type { get; set; }
+        public int Type { get; set; }
         public DateTime ReleaseDate { get; set; }
         public TimeSpan LifeTime { get; set; }
     }

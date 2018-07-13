@@ -2,8 +2,6 @@
 using AirportWebApi.BL.Services;
 using AirportWebApi.DAL.Models;
 using AirportWebApi.DAL.Repositories;
-using AirportWebAPI.DataAccessLayer.Repositories;
-using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -62,13 +60,6 @@ namespace AirportWebApi
 
             services.AddSingleton<IRepository<PlaneType>, PlaneTypeRepository>();
             services.AddScoped<IService<PlaneTypeDto>, PlaneTypeService>();
-
-
-            services.AddSingleton<IValidator<Pilot>, PilotValidator>();
-            //services.AddMvc(opt =>
-            //{
-            //    opt.Filters.Add(typeof(ValidatorActionFilter));
-            //}).AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<PilotValidator>());
 
         }
 
